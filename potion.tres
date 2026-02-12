@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Itemdata" format=3 uid="uid://dhhtcs0i40bny"]
+
+[ext_resource type="Script" uid="uid://bjs2l0gk0stys" path="res://item_data.gd" id="1_21lwq"]
+[ext_resource type="Script" uid="uid://c7mwp5dk0el6d" path="res://item_effect.gd" id="1_v8glk"]
+[ext_resource type="Texture2D" uid="uid://cc1il7mj4vjpq" path="res://2d game assets/items.png" id="2_2ldhl"]
+[ext_resource type="Script" uid="uid://gwb13veov171" path="res://item_effect_heal.gd" id="2_xmwsr"]
+[ext_resource type="AudioStream" uid="uid://di5ywjrv2twg" path="res://2d game assets/hp-up.wav" id="3_28xhh"]
+
+[sub_resource type="Resource" id="Resource_kyuk4"]
+script = ExtResource("2_xmwsr")
+audio = ExtResource("3_28xhh")
+metadata/_custom_type_script = "uid://gwb13veov171"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pilde"]
+atlas = ExtResource("2_2ldhl")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_21lwq")
+name = "Potion"
+texture = SubResource("AtlasTexture_pilde")
+effects = Array[ExtResource("1_v8glk")]([SubResource("Resource_kyuk4")])
+metadata/_custom_type_script = "uid://bjs2l0gk0stys"

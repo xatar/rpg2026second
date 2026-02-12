@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Itemdata" format=3 uid="uid://c2v0otj4oqxba"]
+
+[ext_resource type="Script" uid="uid://c7mwp5dk0el6d" path="res://item_effect.gd" id="1_qdkqt"]
+[ext_resource type="Script" uid="uid://bjs2l0gk0stys" path="res://item_data.gd" id="1_ykhef"]
+[ext_resource type="Texture2D" uid="uid://cc1il7mj4vjpq" path="res://2d game assets/items.png" id="2_l8f2s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdkqt"]
+atlas = ExtResource("2_l8f2s")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_ykhef")
+name = "Gem"
+texture = SubResource("AtlasTexture_qdkqt")
+metadata/_custom_type_script = "uid://bjs2l0gk0stys"

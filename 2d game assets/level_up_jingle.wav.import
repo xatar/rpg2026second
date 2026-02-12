@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ycmi8glsjv3w"
+path="res://.godot/imported/level_up_jingle.wav-87ddd141b2ac56a43e594a3e8a6c9e77.sample"
+
+[deps]
+
+source_file="res://2d game assets/level_up_jingle.wav"
+dest_files=["res://.godot/imported/level_up_jingle.wav-87ddd141b2ac56a43e594a3e8a6c9e77.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dqs3rv6fftn3e"]
+
+[ext_resource type="Script" uid="uid://bfg1k32nixjyo" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Texture2D" uid="uid://cc1il7mj4vjpq" path="res://2d game assets/items.png" id="2_05uyy"]
+[ext_resource type="Script" uid="uid://cnglocjn5cug0" path="res://inventory_ui.gd" id="3_2nc7s"]
+[ext_resource type="PackedScene" uid="uid://854eplm0h3kn" path="res://inventory_slot.tscn" id="3_p81d2"]
+[ext_resource type="Resource" uid="uid://23lxym4p36qb" path="res://player_inventory.tres" id="4_d3xb4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nc7s"]
+atlas = ExtResource("2_05uyy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3xb4"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = SubResource("AtlasTexture_2nc7s")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1281781126]
+process_mode = 3
+script = ExtResource("1_hdmo1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1818963046]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34901962, 0.34901962, 0.34901962, 0.63529414)
+
+[node name="Label" type="Label" parent="." unique_id=978814288]
+modulate = Color(0.6374129, 0.6094495, 0.617394, 1)
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 92.0
+offset_bottom = 39.0
+text = "[ paused ]"
+
+[node name="ItemDescription" type="Label" parent="." unique_id=1036585454]
+modulate = Color(0.6374129, 0.6094495, 0.617394, 1)
+offset_left = 24.0
+offset_top = 176.0
+offset_right = 208.0
+offset_bottom = 199.0
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="." unique_id=376315076]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1833928210]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -70.0
+offset_right = 78.0
+offset_bottom = -4.0
+grow_vertical = 0
+scale = Vector2(1.2, 1)
+
+[node name="Button_Save" type="Button" parent="Control/VBoxContainer" unique_id=1068336094]
+layout_mode = 2
+text = "Save"
+
+[node name="Button2_Load" type="Button" parent="Control/VBoxContainer" unique_id=59897358]
+layout_mode = 2
+text = "Load
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1253877819]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -47.0
+offset_right = 212.0
+offset_bottom = 41.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_d3xb4")
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer" unique_id=577358004]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_2nc7s")
+data = ExtResource("4_d3xb4")
+
+[node name="InventorySlot" parent="Control/PanelContainer/GridContainer" unique_id=968795904 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/PanelContainer/GridContainer" unique_id=196230495 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/PanelContainer/GridContainer" unique_id=1130005166 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/PanelContainer/GridContainer" unique_id=818697212 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/PanelContainer/GridContainer" unique_id=792250854 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" unique_id=465997021 instance=ExtResource("3_p81d2")]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1343393803]
+max_polyphony = 4

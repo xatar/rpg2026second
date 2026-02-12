@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dsci4wqyg3g2v"]
+
+[ext_resource type="Script" uid="uid://drutgi65ytq1m" path="res://item_pickup.gd" id="1_im1t2"]
+[ext_resource type="AudioStream" uid="uid://bo1ogfmh318hh" path="res://2d game assets/item_pickup.wav" id="2_hpx0b"]
+[ext_resource type="Texture2D" uid="uid://cqrgwetj4q8kx" path="res://2d game assets/Shadow.png" id="3_pdrhs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hpx0b"]
+
+[sub_resource type="Animation" id="Animation_1teck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nphyd"]
+resource_name = "default"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.75, 0.85, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbjxh"]
+_data = {
+&"RESET": SubResource("Animation_1teck"),
+&"default": SubResource("Animation_nphyd")
+}
+
+[node name="ItemPickup" type="CharacterBody2D" unique_id=338736346]
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_im1t2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1200812226]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=384803136]
+shape = SubResource("CircleShape2D_hpx0b")
+debug_color = Color(0.3764706, 0.101960786, 0.31764707, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1523150179]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2114482091]
+stream = ExtResource("2_hpx0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1752351195]
+shape = SubResource("CircleShape2D_hpx0b")
+debug_color = Color(0.3764706, 0.101960786, 0.31764707, 0.41960785)
+
+[node name="Shadow_Sprite2D" type="Sprite2D" parent="." unique_id=1759792609]
+modulate = Color(0, 0, 0, 0.35686275)
+position = Vector2(0, 6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_pdrhs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=904455582]
+libraries/ = SubResource("AnimationLibrary_nbjxh")
+autoplay = &"default"

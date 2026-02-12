@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Itemdata" format=3 uid="uid://dq7a5xenr7u2t"]
+
+[ext_resource type="Script" uid="uid://c7mwp5dk0el6d" path="res://item_effect.gd" id="1_ue3da"]
+[ext_resource type="Script" uid="uid://bjs2l0gk0stys" path="res://item_data.gd" id="4_f1q6w"]
+[ext_resource type="Texture2D" uid="uid://cc1il7mj4vjpq" path="res://2d game assets/items.png" id="5_ew4er"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pilde"]
+atlas = ExtResource("5_ew4er")
+region = Rect2(192, 0, 32, 32)
+
+[resource]
+script = ExtResource("4_f1q6w")
+name = "Apple"
+description = "What a beautiful fruit!"
+texture = SubResource("AtlasTexture_pilde")
+metadata/_custom_type_script = "uid://bjs2l0gk0stys"
