@@ -14,16 +14,21 @@ var is_open:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# 1. Update visuals immediately (This applies the Stone texture)
+	_update_label()
+	_update_texture() 
+
+	 # 2. If we are in the editor, stop here so we don't connect game signals
 	if Engine.is_editor_hint():
 		return
+
+	 # 3. Game Logic connections
 	interact_area.area_entered.connect(_on_area_entered)
 	interact_area.area_exited.connect(_on_area_exit)
-	_update_label()
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _set_item_data(value:Itemdata)->void:
@@ -40,7 +45,7 @@ func _set_quantity(value:int)->void:
 func player_interact()->void:
 	if is_open == true:
 		return
-	is_open == true
+	is_open = true
 	animation_player.play("open_chest")
 	if item_data and quantity > 0:
 		PlayerManager.INVENTORY_DATA.add_item(item_data, quantity)
@@ -57,15 +62,23 @@ func _on_area_exit(_area)->void:
 	PlayerManager.interact_pressed.disconnect(player_interact)
 	pass
 	
-func _update_texture()->void:
+func _update_texture() -> void:
+	# Add this check! 
+	if not sprite: 
+		return 
+		
 	if item_data:
 		print("je tu textura")
 		sprite.texture = item_data.texture
 	else:
-		print("neni tu textura")	
-func _update_label()->void:
-	if label:
-		if quantity <= 1:
-			label.text = ""
-		else:
-			label.text = "x" + str(quantity)
+		print("neni tu textura")
+
+func _update_label() -> void:
+	# Add this check!
+	if not label: 
+		return
+		
+	if quantity <= 1:
+		label.text = ""
+	else:
+		label.text = "x" + str(quantity)
