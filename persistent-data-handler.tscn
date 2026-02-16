@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ir62leygb7bi"]
+
+[ext_resource type="Script" uid="uid://dftvad7f18m5a" path="res://persistent_data_handler.gd" id="1_h6s5r"]
+
+[node name="PersistentDataHandler" type="Node" unique_id=623756756]
+script = ExtResource("1_h6s5r")

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxocleebrrcff" path="res://2d game assets/treasure-chest.png" id="2_ymfws"]
 [ext_resource type="Texture2D" uid="uid://cc1il7mj4vjpq" path="res://2d game assets/items.png" id="3_1bxf6"]
 [ext_resource type="AudioStream" uid="uid://dqtperiotgbq4" path="res://2d game assets/treasure-open.wav" id="4_ymfws"]
+[ext_resource type="PackedScene" uid="uid://ir62leygb7bi" path="res://persistent-data-handler.tscn" id="5_1bxf6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymfws"]
 atlas = ExtResource("3_1bxf6")
@@ -304,6 +305,7 @@ size = Vector2(31, 11)
 size = Vector2(34, 17)
 
 [node name="TreasureChest" type="Node2D" unique_id=417623188]
+process_mode = 3
 script = ExtResource("1_tmlhf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=532160333]
@@ -315,17 +317,6 @@ hframes = 2
 visible = false
 position = Vector2(0, -10)
 texture = SubResource("AtlasTexture_ymfws")
-
-[node name="Label" type="Label" parent="." unique_id=1588698589]
-visible = false
-offset_top = -18.0
-offset_right = 40.0
-offset_bottom = 5.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 10
-text = "x99"
-horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=78069753]
 libraries/ = SubResource("AnimationLibrary_tocjx")
@@ -350,3 +341,15 @@ monitorable = false
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_un5t1")
 debug_color = Color(0.26946715, 0.6190696, 0.38674507, 0.41960785)
+
+[node name="Label" type="Label" parent="." unique_id=1588698589]
+visible = false
+offset_top = -18.0
+offset_right = 40.0
+offset_bottom = 5.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="IsOpen" parent="." unique_id=623756756 instance=ExtResource("5_1bxf6")]
