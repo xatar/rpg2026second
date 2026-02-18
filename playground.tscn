@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dhhtcs0i40bny" path="res://potion.tres" id="8_pi42a"]
 [ext_resource type="Resource" uid="uid://bwbwnshsaj8av" path="res://stone.tres" id="9_h1jm5"]
 [ext_resource type="PackedScene" uid="uid://bwi47ntod6oxj" path="res://treasure_chest.tscn" id="10_h1jm5"]
+[ext_resource type="PackedScene" uid="uid://cov50yjcm6tp" path="res://Goblin.tscn" id="11_pio1y"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
@@ -82,3 +83,6 @@ quantity = 10
 
 [node name="TreasureChest4" parent="." unique_id=276086984 instance=ExtResource("10_h1jm5")]
 position = Vector2(327, 16)
+
+[node name="Goblin" parent="." unique_id=1817733388 instance=ExtResource("11_pio1y")]
+position = Vector2(61, -37)

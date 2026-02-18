@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bc40f6ntc05s8"]
+
+[ext_resource type="Script" uid="uid://ciuut5205okl" path="res://visionarea.gd" id="1_15sib"]
+
+[node name="Visionarea" type="Area2D" unique_id=1036350927]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_15sib")
