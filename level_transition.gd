@@ -6,6 +6,9 @@ enum SIDE {LEFT, RIGHT, TOP, BOTTOM}
 
 @export_file("*.tscn") var level
 @export var target_transtition_area : String = "LevelTransition"
+@onready var level_transition: LevelTranstition = $"."
+
+@export var center_player:bool = false
 @export_category("Collistion Area Settings")
 @export var side : SIDE = SIDE.LEFT:
 	set(_v):
@@ -43,22 +46,40 @@ func _player_entered(_p:Node2D)->void:
 func _place_player()->void:
 	if name != LevelManager.target_transition:
 		return
-	PlayerManager.set_player_position(global_position + LevelManager.position_offset)
+	PlayerManager.set_player_position(global_position+get_offset())
+	print(str(global_position+get_offset()))
+	#PlayerManager.set_player_position(global_position + LevelManager.position_offset)
 	pass
 	
 func get_offset()->Vector2:
 	var offset : Vector2 = Vector2.ZERO
 	var player_pos = PlayerManager.player.global_position
-	if side == SIDE.LEFT or side == SIDE.RIGHT:
-		offset.y = player_pos.y - global_position.y
-		offset.x = 16
-		if side == SIDE.LEFT:
-			offset.x *= -1
+	
+	
+	if side == SIDE.LEFT:
+		offset.x += PlayerManager.player.hit_box.get_node("CollisionShape2D").shape.radius * 2
+		pass
+	elif side == SIDE.RIGHT:
+		offset.x -= PlayerManager.player.hit_box.get_node("CollisionShape2D").shape.radius * 2
+		pass
+	elif side == SIDE.TOP:
+		offset.y += PlayerManager.player.hit_box.get_node("CollisionShape2D").shape.radius * 2
 	else:
-		offset.x = player_pos.x - global_position.x
-		offset.y = 16
-		if side == SIDE.TOP:
-			offset.x *= -1
+		offset.y -= PlayerManager.player.hit_box.get_node("CollisionShape2D").shape.radius * 2
+		
+		
+	#if side == SIDE.LEFT or side == SIDE.RIGHT:
+		#offset.y = player_pos.y - global_position.y
+		#offset.x = 64
+		#if side == SIDE.LEFT:
+			#offset.x *= -1
+			#
+	#else:
+		#offset.x = player_pos.x - global_position.x
+		#offset.y = 64
+		#if side == SIDE.TOP:
+			#offset.x *= -1
+			##offset.y = offset.y - 64
 			
 	return offset
 

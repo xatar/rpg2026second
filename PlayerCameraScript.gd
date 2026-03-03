@@ -10,6 +10,8 @@ func _ready() -> void:
 func UpdateLimits(bounds: Array[Vector2]) -> void:
 	if bounds == []:
 		return 
+		# Add this line to see what is happening!
+	print("Camera Bounds Received: ", bounds)
 	limit_left = int(bounds[0].x)
 	limit_top = int(bounds[0].y)
 	limit_right = int(bounds[1].x)

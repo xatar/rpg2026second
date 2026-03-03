@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cg0loi6yqcg3n" path="res://PlayerCameraScript.gd" id="11_l6ohk"]
 [ext_resource type="Script" uid="uid://dinnbhwr1ie2f" path="res://state_stun.gd" id="11_r3kul"]
 [ext_resource type="PackedScene" uid="uid://c5b0bvwiynhdw" path="res://hit_box.tscn" id="13_oudfo"]
+[ext_resource type="Script" uid="uid://5g0uvjq7qs8t" path="res://push_area.gd" id="14_jatw7"]
 [ext_resource type="AudioStream" uid="uid://b5ltaw4dcdioo" path="res://2d game assets/hit_player.wav" id="15_jatw7"]
 
 [sub_resource type="Animation" id="Animation_oudfo"]
@@ -516,6 +517,9 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3kul"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv870"]
+size = Vector2(20, 15)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6rpx"]
 
 [sub_resource type="Animation" id="Animation_0pi4m"]
@@ -586,7 +590,6 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=716653557]
-position = Vector2(232, 142)
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
@@ -672,6 +675,17 @@ monitoring = false
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_r3kul")
 debug_color = Color(0.33508047, 0.61840916, 0.1692121, 0.67058825)
+
+[node name="PushArea" type="Area2D" parent="Interactions" unique_id=1945940324]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("14_jatw7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/PushArea" unique_id=1666947938]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_rv870")
+debug_color = Color(0.8272789, 0.3265749, 0.58026314, 0.67058825)
 
 [node name="HitBox" parent="." unique_id=844240044 instance=ExtResource("13_oudfo")]
 position = Vector2(-1, -21)

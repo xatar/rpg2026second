@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c13hn5s7ocy45"]
+
+[ext_resource type="Script" uid="uid://2w2hq3vf80p6" path="res://pressure_plate.gd" id="1_sxy0f"]
+[ext_resource type="Texture2D" uid="uid://dhbov5lvkberh" path="res://2d game assets/dungeon_props.png" id="2_y7wuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akld7"]
+size = Vector2(11, 12)
+
+[node name="PressurePlate" type="Node2D" unique_id=733816652]
+script = ExtResource("1_sxy0f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=740916616]
+z_index = -1
+texture = ExtResource("2_y7wuu")
+region_enabled = true
+region_rect = Rect2(416, 63, 32, 33)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=571510538]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1856515161]
+collision_layer = 0
+collision_mask = 273
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=601107720]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_akld7")
