@@ -58,19 +58,53 @@ func disable_hurt_box()->void:
 	if hurt_box:
 		hurt_box.monitoring = false
 	
-func drop_items()->void:
+func drop_items() -> void:
 	if drops.size() == 0:
 		return
+		
+	# Store the result of our check once before the loops
+	var enemy_counter_parent = get_enemy_counter_parent()
+		
 	for i in drops.size():
 		if drops[i] == null or drops[i].item == null:
 			continue
 		var drop_count : int = drops[i].get_drop_count()
+		
 		for j in drop_count:
 			var drop : ItemPickup = PICKUP.instantiate() as ItemPickup
 			drop.item_data = drops[i].item
-			enemy.get_parent().call_deferred("add_child", drop)
-			drop.global_position = enemy.global_position
-			drop.velocity = enemy.velocity.rotated(randf_range(-1.5, 1.5))*randf_range(-0.9,1.5)
 			
-	pass
+			enemy.get_parent().call_deferred("add_child", drop)
+			
+			# Check if our variable is NOT null (meaning it IS an EnemyCounter)
+			if enemy_counter_parent != null:
+				drop.global_position = enemy.global_position - enemy_counter_parent.global_position
+			else:
+				drop.global_position = enemy.global_position
+				
+			# You had this line duplicated in both if/else, so we can just move it outside!
+			drop.velocity = enemy.velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(-0.9, 1.5)
+
+
+# Renamed to make sense for returning a Node instead of a bool
+func get_enemy_counter_parent() -> Node:
+	# 1. 'owner' points to the root of the scene this node is saved in (the Slime)
+	var slime_node = owner 
 	
+	# Make sure the slime node actually exists and is in the tree
+	if slime_node == null or not slime_node.is_inside_tree():
+		return null
+		
+	# 2. Get the Slime's parent
+	var slimes_parent = slime_node.get_parent()
+	
+	if slimes_parent == null:
+		return null
+		
+	# 3. Check if the parent is an EnemyCounter
+	if slimes_parent is EnemyCounter:
+		print("Slime's parent IS EnemyCounter!")
+		return slimes_parent # Return the actual node so we can use its position!
+	else:
+		print("Slime's parent is NOT EnemyCounter. It is: ", slimes_parent.name)
+		return null # Return null to represent 'false'

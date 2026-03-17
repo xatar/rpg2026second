@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c5b0bvwiynhdw" path="res://hit_box.tscn" id="13_oudfo"]
 [ext_resource type="Script" uid="uid://5g0uvjq7qs8t" path="res://push_area.gd" id="14_jatw7"]
 [ext_resource type="AudioStream" uid="uid://b5ltaw4dcdioo" path="res://2d game assets/hit_player.wav" id="15_jatw7"]
+[ext_resource type="Script" uid="uid://cv0cyulcg22j0" path="res://abilities.gd" id="17_rv870"]
 
 [sub_resource type="Animation" id="Animation_oudfo"]
 length = 0.001
@@ -698,3 +699,6 @@ debug_color = Color(0.6372365, 0.52552736, 0.08478596, 0.41960785)
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=508325329]
 libraries/ = SubResource("AnimationLibrary_h84ma")
+
+[node name="Abilities" type="Node" parent="." unique_id=596093213]
+script = ExtResource("17_rv870")

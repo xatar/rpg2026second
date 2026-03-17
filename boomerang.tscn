@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://5utny4v7pav3"]
+
+[ext_resource type="Script" uid="uid://c7vlqojseev8c" path="res://boomerang.gd" id="1_420uo"]
+[ext_resource type="Texture2D" uid="uid://dadodnereus78" path="res://2d game assets/boomerang.png" id="2_7wdce"]
+[ext_resource type="PackedScene" uid="uid://oci6riuubqss" path="res://hurt_box.tscn" id="3_7wdce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iprhk"]
+radius = 13.0
+
+[sub_resource type="Animation" id="Animation_41yrk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wumx0"]
+resource_name = "boomerang"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.038098957, 0.076197915, 0.11429689, 0.15239583, 0.19049479, 0.22859378, 0.26669273),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ni5xy"]
+_data = {
+&"RESET": SubResource("Animation_41yrk"),
+&"boomerang": SubResource("Animation_wumx0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41yrk"]
+radius = 13.0
+
+[node name="Boomerang" type="Node2D" unique_id=1049110434]
+script = ExtResource("1_420uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=540945007]
+position = Vector2(0, -8)
+texture = ExtResource("2_7wdce")
+hframes = 8
+
+[node name="Area2D" type="Area2D" parent="." unique_id=981684399]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=200954095]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_iprhk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2019515588]
+libraries/ = SubResource("AnimationLibrary_ni5xy")
+autoplay = &"boomerang"
+
+[node name="hurt_box" parent="." unique_id=721677673 instance=ExtResource("3_7wdce")]
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box" unique_id=1656656667]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_41yrk")
+debug_color = Color(0.8662183, 0.30592793, 0.47615814, 0.41960785)

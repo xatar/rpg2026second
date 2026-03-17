@@ -1,8 +1,9 @@
 class_name State_Walk extends State
 
-@export var move_speed: float = 5000.0
+@export var move_speed: float = 100.0
 @onready var idle: State = $"../idle"
 @onready var attack: State = $"../attack"
+
 
 func Enter() -> void:
 	player.UpdateAnimation("walk")
@@ -11,10 +12,12 @@ func Enter() -> void:
 func Exit() -> void:
 	pass
 	
-func Process (delta: float) -> State:
+
+	
+func Process (_delta: float) -> State:
 	if player.direction == Vector2.ZERO:
 		return idle
-	player.velocity = player.direction * move_speed * delta
+	player.velocity = player.direction * move_speed
 	if player.SetDirection():
 		player.UpdateAnimation("walk")
 	return null
