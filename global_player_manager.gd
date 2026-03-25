@@ -34,3 +34,9 @@ func set_health(hp: int, max_hp: int)->void:
 	player.hp = hp
 	player.update_hp(0) #nutné zadat i když nic neměníme aby se aktualizovali např UI
 	
+func play_audio(_audio:AudioStream) -> void:
+	player.audio.stream = _audio
+	
+	player.audio.set_volume_linear(10)
+	player.audio.play()
+	

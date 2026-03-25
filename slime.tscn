@@ -844,10 +844,6 @@ after_idle_state = NodePath("../Wander")
 [node name="Wander" type="Node" parent="EnemyStateMachine" unique_id=321320682 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_jayke")
 anim_name = "idle"
-wander_speed = null
-state_animation_duration = null
-state_cycles_min = null
-state_cycles_max = null
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" unique_id=588480503 node_paths=PackedStringArray("next_state")]

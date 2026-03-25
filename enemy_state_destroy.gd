@@ -17,7 +17,7 @@ var _direction : Vector2
 
 #what happens when we initialize this state
 func init() -> void :
-	enemy.enemy_damaged.connect(_on_enemy_destroyed)
+	enemy.enemy_destroy.connect(_on_enemy_destroyed)
 	pass
 
 #what happens when we enter this state	
