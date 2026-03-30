@@ -20,6 +20,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=500
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bht478osddmb6"
+
 [autoload]
 
 LevelManager="*res://GlobalLevelManager.gd"
@@ -28,6 +32,7 @@ PlayerManager="*res://global_player_manager.gd"
 SceneTransition="*res://scene_transition.tscn"
 SaveManager="*res://global_save_manager.gd"
 PauseMenu="*res://pause_menu.tscn"
+AudioManager="*uid://bwoc4jb1ui8sr"
 
 [display]
 

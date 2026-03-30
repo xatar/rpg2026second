@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtd61kfj12055" path="res://level.gd" id="1_o00ia"]
 [ext_resource type="PackedScene" uid="uid://plunw0vyh715" path="res://2d game assets/grass01.tscn" id="1_wt17y"]
+[ext_resource type="AudioStream" uid="uid://cc7y6vl2ycupv" path="res://example_music_01.ogg" id="2_yjl7g"]
 [ext_resource type="PackedScene" uid="uid://cdb665vyh855h" path="res://plant.tscn" id="3_m8u5f"]
 [ext_resource type="PackedScene" uid="uid://b2oab6wa21g7j" path="res://slime.tscn" id="4_is3ju"]
 [ext_resource type="PackedScene" uid="uid://dxyesfyae41o2" path="res://player_spawn.tscn" id="4_o00ia"]
@@ -12,10 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bwi47ntod6oxj" path="res://treasure_chest.tscn" id="10_h1jm5"]
 [ext_resource type="PackedScene" uid="uid://cov50yjcm6tp" path="res://Goblin.tscn" id="11_pio1y"]
 [ext_resource type="PackedScene" uid="uid://dpn3ybs0v1itl" path="res://level_transition.tscn" id="12_te8jg"]
+[ext_resource type="PackedScene" uid="uid://blbiyxochh0gu" path="res://npc.tscn" id="14_f7pug"]
+[ext_resource type="Resource" uid="uid://1iivqoiiod7w" path="res://npc_01.tres" id="15_dk0co"]
+[ext_resource type="PackedScene" uid="uid://rvfsuwrxxr4e" path="res://npc_behaviour_wander.tscn" id="15_jgc46"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
 script = ExtResource("1_o00ia")
+music = ExtResource("2_yjl7g")
 
 [node name="Grass01" parent="." unique_id=1764191570 instance=ExtResource("1_wt17y")]
 position = Vector2(13, 3)
@@ -94,3 +99,10 @@ position = Vector2(163, 253)
 level = "uid://jyg4asb8cirq"
 center_player = false
 side = 2
+
+[node name="NPC" parent="." unique_id=653292728 instance=ExtResource("14_f7pug")]
+position = Vector2(400, 254)
+npc_resource = ExtResource("15_dk0co")
+
+[node name="NpcBehaviourWander" parent="NPC" unique_id=1600767806 instance=ExtResource("15_jgc46")]
+wander_range = 3

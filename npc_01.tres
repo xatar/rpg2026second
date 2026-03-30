@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NPCResource" format=3 uid="uid://1iivqoiiod7w"]
+
+[ext_resource type="Texture2D" uid="uid://dy35o4prwcqmx" path="res://npc_and_dialog/sprites/portraits/npc_portrait_01.png" id="1_2svyr"]
+[ext_resource type="Script" uid="uid://sxmsl8iap44e" path="res://npc_resource.gd" id="2_2xo3m"]
+[ext_resource type="Texture2D" uid="uid://jrlool5qkv38" path="res://npc_and_dialog/sprites/npc_sprite.png" id="3_jh5qu"]
+
+[resource]
+script = ExtResource("2_2xo3m")
+npc_name = "Alan"
+sprite = ExtResource("3_jh5qu")
+portrait = ExtResource("1_2svyr")
+metadata/_custom_type_script = "uid://sxmsl8iap44e"

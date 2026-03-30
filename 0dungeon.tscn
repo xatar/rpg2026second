@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://jyg4asb8cirq"]
 
 [ext_resource type="Script" uid="uid://dtd61kfj12055" path="res://level.gd" id="1_gux2a"]
+[ext_resource type="AudioStream" uid="uid://dh8ffcbhfdh2j" path="res://example_music_02.ogg" id="2_1n725"]
 [ext_resource type="PackedScene" uid="uid://sxuodkfj4tl6" path="res://DungeonTileMap.tscn" id="3_2cjfx"]
 [ext_resource type="PackedScene" uid="uid://dxyesfyae41o2" path="res://player_spawn.tscn" id="3_vvw2v"]
 [ext_resource type="PackedScene" uid="uid://dpn3ybs0v1itl" path="res://level_transition.tscn" id="4_gux2a"]
@@ -14,6 +15,7 @@
 
 [node name="02" type="Node2D" unique_id=1286597434]
 script = ExtResource("1_gux2a")
+music = ExtResource("2_1n725")
 
 [node name="PressurePlate" parent="." unique_id=733816652 instance=ExtResource("5_k0eba")]
 position = Vector2(272, 304)
