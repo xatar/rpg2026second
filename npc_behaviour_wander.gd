@@ -30,7 +30,9 @@ func _process(delta: float) -> void:
 		npc.update_direction(global_position+npc.direction)
 		npc.update_animation()
 	pass
+	
 func start()->void:
+	
 	#idle phase
 	if npc.do_behaviour == false:
 		return
