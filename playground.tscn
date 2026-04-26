@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://1iivqoiiod7w" path="res://npc_01.tres" id="15_dk0co"]
 [ext_resource type="PackedScene" uid="uid://rvfsuwrxxr4e" path="res://npc_behaviour_wander.tscn" id="15_jgc46"]
 [ext_resource type="PackedScene" uid="uid://neiy48l6uifn" path="res://npc_behaviour_patrol.tscn" id="17_ycdrs"]
+[ext_resource type="PackedScene" uid="uid://do6o4gp8rrxtb" path="res://patrol_location.tscn" id="18_ycdrs"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
@@ -115,3 +116,27 @@ npc_resource = ExtResource("15_dk0co")
 
 [node name="NpcBehaviourPatrol" parent="NPC2" unique_id=1292298052 instance=ExtResource("17_ycdrs")]
 position = Vector2(-35, -4)
+
+[node name="PatrolLocation2" parent="NPC2/NpcBehaviourPatrol" unique_id=903740058 instance=ExtResource("18_ycdrs")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-35, -8)
+
+[node name="PatrolLocation3" parent="NPC2/NpcBehaviourPatrol" unique_id=460644962 instance=ExtResource("18_ycdrs")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(39, 26)
+
+[node name="PatrolLocation4" parent="NPC2/NpcBehaviourPatrol" unique_id=1029942336 instance=ExtResource("18_ycdrs")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(109, 8)
+
+[node name="PatrolLocation5" parent="NPC2/NpcBehaviourPatrol" unique_id=996718162 instance=ExtResource("18_ycdrs")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(115, -66)
+
+[node name="PatrolLocation6" parent="NPC2/NpcBehaviourPatrol" unique_id=320751877 instance=ExtResource("18_ycdrs")]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(58, -74)
+
+[node name="PatrolLocation7" parent="NPC2/NpcBehaviourPatrol" unique_id=848077342 instance=ExtResource("18_ycdrs")]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-22, -78)

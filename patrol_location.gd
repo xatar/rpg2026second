@@ -7,7 +7,7 @@ class_name PatrolLocation extends Node2D
 		_update_wait_time_label()
 		
 		
-var target_postion : Vector2  = Vector2.ZERO
+var target_position : Vector2  = Vector2.ZERO
 
 signal transform_changed
 
@@ -29,7 +29,7 @@ func _update_wait_time_label()->void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	target_postion = global_position
+	target_position = global_position
 	_update_wait_time_label()
 	if Engine.is_editor_hint():
 		return

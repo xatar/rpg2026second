@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://dx2jvqpn2ty7q"]
+
+[ext_resource type="Script" uid="uid://kxgpol821fdp" path="res://dialog_system.gd" id="1_3ealq"]
+[ext_resource type="Texture2D" uid="uid://upd3klm0yesm" path="res://npc_and_dialog/sprites/text-bubble.png" id="2_qxpbi"]
+[ext_resource type="FontFile" uid="uid://cs7jf8coq75t3" path="res://npc_and_dialog/fonts/Abaddon Light.ttf" id="3_a33ws"]
+[ext_resource type="FontFile" uid="uid://d3teuoopvs3lo" path="res://npc_and_dialog/fonts/Abaddon Bold.ttf" id="4_gn7cj"]
+[ext_resource type="Texture2D" uid="uid://dy35o4prwcqmx" path="res://npc_and_dialog/sprites/portraits/npc_portrait_01.png" id="5_a33ws"]
+
+[sub_resource type="Gradient" id="Gradient_eaxwd"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0llje"]
+gradient = SubResource("Gradient_eaxwd")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqx8y"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+texture = ExtResource("2_qxpbi")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gn7cj"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.8980392)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_eaxwd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0llje"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.083, 1.159, 1.159, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqx8y"]
+_data = {
+&"RESET": SubResource("Animation_eaxwd"),
+&"new_animation": SubResource("Animation_0llje")
+}
+
+[node name="DialogSystem" type="CanvasLayer" unique_id=289145181]
+process_mode = 3
+layer = 0
+script = ExtResource("1_3ealq")
+
+[node name="DialogUI" type="Control" parent="." unique_id=2006675351]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="DialogUI" unique_id=463637133]
+modulate = Color(0.08468992, 0.08468994, 0.08468988, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -149.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_0llje")
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogUI" unique_id=258926174]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -367.0
+offset_top = -99.0
+offset_right = -6.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_iqx8y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogUI/PanelContainer" unique_id=998031758]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.4392157, 0.39607844, 0.32156864, 1)
+theme_override_fonts/normal_font = ExtResource("3_a33ws")
+theme_override_fonts/bold_font = ExtResource("4_gn7cj")
+bbcode_enabled = true
+text = "[b]Example text
+[/b][wave] ahoj[/wave]
+[shake] [color=orange]shaking in orange[/color][/shake]
+ahoj"
+fit_content = true
+scroll_active = false
+
+[node name="NameLabel" type="Label" parent="DialogUI" unique_id=86124352]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 154.0
+offset_right = 150.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0.89411765, 0.8627451, 0.79607844, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69900006)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/font = ExtResource("4_gn7cj")
+text = "NAME"
+
+[node name="PortraitSprite" type="Sprite2D" parent="DialogUI" unique_id=210063931]
+position = Vector2(56, 200)
+texture = ExtResource("5_a33ws")
+hframes = 4
+
+[node name="Timer" type="Timer" parent="DialogUI" unique_id=1062727853]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DialogUI" unique_id=1105872308]
+
+[node name="DialogProgressIndicator" type="PanelContainer" parent="DialogUI" unique_id=1432519395]
+self_modulate = Color(0.30980393, 0.54901963, 0.1254902, 1)
+layout_mode = 0
+offset_left = 447.0
+offset_top = 252.0
+offset_right = 487.0
+offset_bottom = 273.0
+scale = Vector2(0.73781824, 0.6774797)
+theme_override_styles/panel = SubResource("StyleBoxFlat_gn7cj")
+
+[node name="Label" type="Label" parent="DialogUI/DialogProgressIndicator" unique_id=426265569]
+modulate = Color(1, 1, 1, 0.7176471)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1.177, 1.177, 1.177, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69900006)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_fonts/font = ExtResource("4_gn7cj")
+text = "NEXT"
+horizontal_alignment = 3
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogUI/DialogProgressIndicator" unique_id=153980731]
+libraries/ = SubResource("AnimationLibrary_iqx8y")
+autoplay = &"new_animation"

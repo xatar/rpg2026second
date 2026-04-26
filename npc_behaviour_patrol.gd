@@ -36,18 +36,18 @@ func gather_patrol_locations(_n : Node = null)->void:
 			for i in patrol_location.size():
 				var _p = patrol_location[i] as PatrolLocation
 				
-				#if not _p.transform_changed.is_connected(gather_patrol_locations):
-					#_p.transform_changed.connect(gather_patrol_locations)
+				if not _p.transform_changed.is_connected(gather_patrol_locations):
+					_p.transform_changed.connect(gather_patrol_locations)
 				
 				_p.update_label(str(i))
 				_p.modulate = _get_color_by_index(i)
 				
-				#var _next : PatrolLocation
-				#if i < patrol_location.size()-1:
-					#_next = patrol_location[i + 1]
-				#else:
-					#_next = patrol_location[0]
-				#_p.update_line(_next.postion)
+				var _next : PatrolLocation
+				if i < patrol_location.size()-1:
+					_next = patrol_location[i + 1]
+				else:
+					_next = patrol_location[0]
+				_p.update_line(_next.position)
 		return
 	pass
 	
@@ -61,7 +61,7 @@ func _get_color_by_index(i : int )->Color:
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	if npc.global_position.distance_to(target.target_postion) < 1:
+	if npc.global_position.distance_to(target.target_position) < 5.0:
 		start()
 	pass
 	
@@ -69,7 +69,7 @@ func start()->void:
 	if npc.do_behaviour == false or patrol_location.size()<2:
 		return
 	#Idle 
-	npc.global_position = target.target_postion
+	npc.global_position = target.target_position
 	npc.state = "idle"
 	npc.velocity = Vector2.ZERO
 	npc.update_animation()
@@ -82,9 +82,9 @@ func start()->void:
 	if npc.do_behaviour == false:
 		return
 	npc.state = "walk"
-	var _dir = global_position.direction_to(target.target_postion)
+	var _dir = npc.global_position.direction_to(target.target_position)
 	npc.direction = _dir
 	npc.velocity = walk_speed * _dir
-	npc.update_direction(target.target_postion)
+	npc.update_direction(target.target_position)
 	npc.update_animation()
 	pass
