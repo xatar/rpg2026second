@@ -16,8 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://blbiyxochh0gu" path="res://npc.tscn" id="14_f7pug"]
 [ext_resource type="Resource" uid="uid://1iivqoiiod7w" path="res://npc_01.tres" id="15_dk0co"]
 [ext_resource type="PackedScene" uid="uid://rvfsuwrxxr4e" path="res://npc_behaviour_wander.tscn" id="15_jgc46"]
+[ext_resource type="PackedScene" uid="uid://5vb0dy0nkub1" path="res://dialogInteraction.tscn" id="17_5m40n"]
 [ext_resource type="PackedScene" uid="uid://neiy48l6uifn" path="res://npc_behaviour_patrol.tscn" id="17_ycdrs"]
+[ext_resource type="Script" uid="uid://co27s0mfsyi2v" path="res://dialogue_text.gd" id="18_jufm4"]
 [ext_resource type="PackedScene" uid="uid://do6o4gp8rrxtb" path="res://patrol_location.tscn" id="18_ycdrs"]
+[ext_resource type="Resource" uid="uid://dfwe7sk4biisw" path="res://00_hero.tres" id="19_ymgag"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
@@ -109,6 +112,24 @@ npc_resource = ExtResource("15_dk0co")
 [node name="NpcBehaviourWander" parent="NPC" unique_id=1600767806 instance=ExtResource("15_jgc46")]
 position = Vector2(-1, 1)
 wander_range = 3
+
+[node name="DialogInteraction" parent="NPC" unique_id=1107606367 instance=ExtResource("17_5m40n")]
+
+[node name="DialogText" type="Node" parent="NPC/DialogInteraction" unique_id=1684508702]
+script = ExtResource("18_jufm4")
+text = "Hi, [b] HERO [/b] is that really [wave] you?"
+metadata/_custom_type_script = "uid://co27s0mfsyi2v"
+
+[node name="DialogText2" type="Node" parent="NPC/DialogInteraction" unique_id=210748162]
+script = ExtResource("18_jufm4")
+npc_info = ExtResource("19_ymgag")
+metadata/_custom_type_script = "uid://co27s0mfsyi2v"
+
+[node name="DialogText3" type="Node" parent="NPC/DialogInteraction" unique_id=1571119906]
+script = ExtResource("18_jufm4")
+text = "Thank god!
+I was already thinking that you are a bandit for a [shake][colour=red]second"
+metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="NPC2" parent="." unique_id=597693290 instance=ExtResource("14_f7pug")]
 position = Vector2(579, 294)
