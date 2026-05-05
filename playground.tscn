@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://co27s0mfsyi2v" path="res://dialogue_text.gd" id="18_jufm4"]
 [ext_resource type="PackedScene" uid="uid://do6o4gp8rrxtb" path="res://patrol_location.tscn" id="18_ycdrs"]
 [ext_resource type="Resource" uid="uid://dfwe7sk4biisw" path="res://00_hero.tres" id="19_ymgag"]
+[ext_resource type="Resource" uid="uid://dlaf3ulqiug3t" path="res://npc_02.tres" id="20_ymgag"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
@@ -118,6 +119,7 @@ wander_range = 3
 [node name="DialogText" type="Node" parent="NPC/DialogInteraction" unique_id=1684508702]
 script = ExtResource("18_jufm4")
 text = "Hi, [b] HERO [/b] is that really [wave] you?"
+npc_info = ExtResource("15_dk0co")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="DialogText2" type="Node" parent="NPC/DialogInteraction" unique_id=210748162]
@@ -129,11 +131,12 @@ metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 script = ExtResource("18_jufm4")
 text = "Thank god!
 I was already thinking that you are a bandit for a [shake][colour=red]second"
+npc_info = ExtResource("15_dk0co")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="NPC2" parent="." unique_id=597693290 instance=ExtResource("14_f7pug")]
 position = Vector2(579, 294)
-npc_resource = ExtResource("15_dk0co")
+npc_resource = ExtResource("20_ymgag")
 
 [node name="NpcBehaviourPatrol" parent="NPC2" unique_id=1292298052 instance=ExtResource("17_ycdrs")]
 position = Vector2(-35, -4)

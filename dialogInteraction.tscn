@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d4aowjhjl1ah8" path="res://dialog_interaction.gd" id="1_p7ceb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7ceb"]
-size = Vector2(36, 26)
+size = Vector2(124, 92)
 
 [sub_resource type="Animation" id="Animation_ocie1"]
 length = 0.001
@@ -125,6 +125,8 @@ _data = {
 }
 
 [node name="DialogInteraction" type="Area2D" unique_id=1107606367]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_p7ceb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=561281889]
