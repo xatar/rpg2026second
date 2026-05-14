@@ -124,6 +124,7 @@ metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="DialogText2" type="Node" parent="NPC/DialogInteraction" unique_id=210748162]
 script = ExtResource("18_jufm4")
+text = "yes its me"
 npc_info = ExtResource("19_ymgag")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 

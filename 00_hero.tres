@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="NPCResource" format=3 uid="uid://dfwe7sk4biisw"]
 
+[ext_resource type="Texture2D" uid="uid://3ki7oaxvy1y0" path="res://npc_and_dialog/sprites/portraits/hero_portrait.png" id="1_iojyg"]
 [ext_resource type="Script" uid="uid://sxmsl8iap44e" path="res://npc_resource.gd" id="1_yhyj7"]
+[ext_resource type="Texture2D" uid="uid://b6wkryirduppw" path="res://player/PlayerSprite02.png" id="3_4gkm2"]
 
 [resource]
 script = ExtResource("1_yhyj7")
+sprite = ExtResource("3_4gkm2")
+portrait = ExtResource("1_iojyg")
 metadata/_custom_type_script = "uid://sxmsl8iap44e"

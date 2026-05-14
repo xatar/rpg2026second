@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 
 func player_interact()->void:
+	print("KLIKNUL")
 	player_interacted.emit()
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -35,7 +36,7 @@ func player_interact()->void:
 	pass
 
 func _on_area_enter(_a:Area2D)->void:
-	print("test")
+	print("ON AREA ENTER")
 	if enabled == false or dialog_items.size() == 0:
 		return
 	animation_player.play("show")
@@ -43,7 +44,7 @@ func _on_area_enter(_a:Area2D)->void:
 	pass
 	
 func _on_area_exit(_a:Area2D)->void:
-	print("test")
+	print("ON AREA EXIT")
 	animation_player.play("hide")
 	PlayerManager.interact_pressed.disconnect(player_interact)
 	pass
