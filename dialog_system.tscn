@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cs7jf8coq75t3" path="res://npc_and_dialog/fonts/Abaddon Light.ttf" id="3_a33ws"]
 [ext_resource type="FontFile" uid="uid://d3teuoopvs3lo" path="res://npc_and_dialog/fonts/Abaddon Bold.ttf" id="4_gn7cj"]
 [ext_resource type="Texture2D" uid="uid://dy35o4prwcqmx" path="res://npc_and_dialog/sprites/portraits/npc_portrait_01.png" id="5_a33ws"]
+[ext_resource type="Script" uid="uid://q1xqi2gbwwgg" path="res://dialog_portrait.gd" id="6_eaxwd"]
 [ext_resource type="AudioStream" uid="uid://c5lj384airq8r" path="res://npc_and_dialog/audio/voice_blip.wav" id="6_gn7cj"]
 
 [sub_resource type="Gradient" id="Gradient_eaxwd"]
@@ -143,6 +144,7 @@ text = "NAME"
 position = Vector2(56, 200)
 texture = ExtResource("5_a33ws")
 hframes = 4
+script = ExtResource("6_eaxwd")
 
 [node name="Timer" type="Timer" parent="DialogUI" unique_id=1062727853]
 one_shot = true

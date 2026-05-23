@@ -15,7 +15,7 @@ signal finished
 var t : int = 0
 
 @onready var content: RichTextLabel = $DialogUI/PanelContainer/RichTextLabel
-@onready var portrait_sprite: Sprite2D = $DialogUI/PortraitSprite
+@onready var portrait_sprite: DialogPortrait = $DialogUI/PortraitSprite
 @onready var dialog_progress_indicator: PanelContainer = $DialogUI/DialogProgressIndicator
 @onready var dialog_progress_indicator_label: Label = $DialogUI/DialogProgressIndicator/Label
 @onready var name_label: Label = $DialogUI/NameLabel
@@ -93,6 +93,7 @@ func start_dialog()->void:
 func _on_timer_timeout()->void:
 	content.visible_characters += 1
 	if content.visible_characters <= text_length:
+		letter_added.emit(plain_text[content.visible_characters-1])
 		start_timer()
 	else:
 		show_dialog_button_indicator(true)
@@ -100,16 +101,21 @@ func _on_timer_timeout()->void:
 	pass
 func start_timer()->void:
 	timer.wait_time = text_speed
+	var _char = plain_text[content.visible_characters-1]
+	if ".!?:;".contains(_char):
+		timer.wait_time *= 4
+	elif ", ".contains(_char):
+		timer.wait_time *= 2
 	timer.start()
 	
-	t = t + 1
-	print(str(t))
+	
 	pass
 func set_dialog_data(_d:DialogItem)->void:
 	if _d is DialogText:
 		content.text = _d.text
 	name_label.text = _d.npc_info.npc_name	
 	portrait_sprite.texture = _d.npc_info.portrait
+	portrait_sprite.audio_pitch_base = _d.npc_info.dialog_audio_pitch
 	pass
 	
 func show_dialog_button_indicator(_is_visible:bool)->void:
