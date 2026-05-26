@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dy35o4prwcqmx" path="res://npc_and_dialog/sprites/portraits/npc_portrait_01.png" id="5_a33ws"]
 [ext_resource type="Script" uid="uid://q1xqi2gbwwgg" path="res://dialog_portrait.gd" id="6_eaxwd"]
 [ext_resource type="AudioStream" uid="uid://c5lj384airq8r" path="res://npc_and_dialog/audio/voice_blip.wav" id="6_gn7cj"]
+[ext_resource type="Theme" uid="uid://vbkebplqp88s" path="res://dialog_choice_theme.tres" id="8_0llje"]
 
 [sub_resource type="Gradient" id="Gradient_eaxwd"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -181,3 +182,45 @@ vertical_alignment = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialogUI/DialogProgressIndicator" unique_id=153980731]
 libraries/ = SubResource("AnimationLibrary_iqx8y")
 autoplay = &"new_animation"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogUI" unique_id=640724492]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -111.0
+offset_right = 259.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8800012, 1)
+theme = ExtResource("8_0llje")
+alignment = 1
+
+[node name="Button" type="Button" parent="DialogUI/VBoxContainer" unique_id=1880063481]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
+
+[node name="Button2" type="Button" parent="DialogUI/VBoxContainer" unique_id=1766463137]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
+
+[node name="Button3" type="Button" parent="DialogUI/VBoxContainer" unique_id=664518091]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
+
+[node name="Button4" type="Button" parent="DialogUI/VBoxContainer" unique_id=982883346]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
+
+[node name="Button5" type="Button" parent="DialogUI/VBoxContainer" unique_id=1556483851]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "test"
