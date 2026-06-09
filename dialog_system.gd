@@ -1,7 +1,7 @@
 @tool
 @icon("res://npc_and_dialog/icons/star_bubble.svg")
-
-class_name DialogSystemNode extends CanvasLayer
+class_name DialogSystemNode
+extends CanvasLayer
 var is_active:bool = false
 var dialog_items:Array[DialogItem]
 var dialog_item_index:int=0
@@ -30,6 +30,8 @@ var t : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint():
+		dialog_ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
 		if get_viewport() is Window:
 			get_parent().remove_child(self)
 			return
@@ -107,13 +109,15 @@ func set_dialog_choice(_d : DialogChoice)->void:
 	for i in _d.dialog_branches.size():
 		var _new_choice : Button = Button.new()
 		_new_choice.text = _d.dialog_branches[i].text
-		_new_choice.pressed.connect(_dialog_choice_selected)
+		_new_choice.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		_new_choice.pressed.connect(_dialog_choice_selected.bind(_d.dialog_branches[i]))
 		choice_options.add_child(_new_choice)
 	await get_tree().process_frame
 	choice_options.get_child(0).grab_focus()
 	pass
-func _dialog_choice_selected()->void:
-	
+func _dialog_choice_selected(_d:DialogBranch)->void:
+	choice_options.visible = false
+	show_dialog(_d.dialog_items)
 	pass
 func _on_timer_timeout()->void:
 	content.visible_characters += 1

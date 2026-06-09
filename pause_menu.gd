@@ -24,8 +24,8 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if is_paused == false:
-			show_pause_menu()
-			pass
+				if DialogSystem.is_active == false:
+					show_pause_menu()
 		else:
 			hide_pause_menu()
 			pass

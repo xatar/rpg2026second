@@ -77,7 +77,8 @@ _data = {
 
 [node name="DialogSystem" type="CanvasLayer" unique_id=289145181]
 process_mode = 3
-layer = 0
+layer = 3
+follow_viewport_enabled = true
 script = ExtResource("1_3ealq")
 
 [node name="DialogUI" type="Control" parent="." unique_id=2006675351]
@@ -87,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="DialogUI" unique_id=463637133]
 modulate = Color(0.08468992, 0.08468994, 0.08468988, 1)

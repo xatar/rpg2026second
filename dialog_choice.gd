@@ -7,6 +7,7 @@ var dialog_branches : Array[DialogBranch]
 
 
 func _ready()->void:
+	super()
 	if Engine.is_editor_hint():
 		return
 	for c in get_children():

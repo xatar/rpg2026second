@@ -182,25 +182,30 @@ metadata/_custom_type_script = "uid://xvpbc3biqhcm"
 
 [node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice" unique_id=934057699]
 script = ExtResource("24_vnugj")
-test = "Ok"
+text = "yes"
+npc_info = ExtResource("19_ymgag")
 metadata/_custom_type_script = "uid://b4ceak8aglsah"
 
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch" unique_id=368417712]
 script = ExtResource("18_jufm4")
 text = "Thank you! You are great-"
+npc_info = ExtResource("20_ymgag")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
-[node name="DialogText2" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch" unique_id=23016575]
+[node name="DialogText2" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch/DialogText" unique_id=23016575]
 script = ExtResource("18_jufm4")
 text = "And please be carefull"
+npc_info = ExtResource("20_ymgag")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="DialogBranch2" type="Node" parent="NPC2/DialogInteraction/DialogChoice" unique_id=2143372288]
 script = ExtResource("24_vnugj")
-test = "No"
+text = "no"
+npc_info = ExtResource("19_ymgag")
 metadata/_custom_type_script = "uid://b4ceak8aglsah"
 
 [node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch2" unique_id=1027870449]
 script = ExtResource("18_jufm4")
 text = "What a shame... Who will help me instead?"
+npc_info = ExtResource("20_ymgag")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
