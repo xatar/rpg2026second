@@ -40,7 +40,7 @@ func _on_selection_changed()->void:
 			print("test 4")
 			return
 		self.add_child(example_dialog)
-		example_dialog.offset = get_parent_global_position() + Vector2(32, -200)
+		example_dialog.offset = get_parent_global_position() + Vector2(-300, -100)
 		check_npc_data()
 		_set_editor_display()
 			
@@ -65,15 +65,15 @@ func _process(delta: float) -> void:
 # This function traverses up the node tree to find the NPC's actual 2D position
 func get_parent_global_position() -> Vector2:
 	var p = self
-	var checking : bool = true
-	while checking == true:
+	var _checking : bool = true
+	while _checking == true:
 		p = p.get_parent()
 		if p:
 			# Check if the parent has a 2D transform
 			if p is Node2D:
 				return p.global_position
 		else:
-			checking = false
+			_checking = false
 	return Vector2.ZERO
 
 func _set_editor_display() -> void:

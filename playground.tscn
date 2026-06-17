@@ -178,11 +178,12 @@ metadata/_custom_type_script = "uid://co27s0mfsyi2v"
 
 [node name="DialogChoice" type="Node" parent="NPC2/DialogInteraction" unique_id=782193215]
 script = ExtResource("23_u2qr3")
+npc_info = ExtResource("20_ymgag")
 metadata/_custom_type_script = "uid://xvpbc3biqhcm"
 
 [node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice" unique_id=934057699]
 script = ExtResource("24_vnugj")
-text = "yes"
+text = "yes, no problem"
 npc_info = ExtResource("19_ymgag")
 metadata/_custom_type_script = "uid://b4ceak8aglsah"
 

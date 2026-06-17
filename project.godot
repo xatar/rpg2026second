@@ -15,9 +15,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="2d rpg game - tutorial"
-run/main_scene="uid://bjlsfive81gf7"
+run/main_scene="uid://cbeulslb6wogg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=500
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]

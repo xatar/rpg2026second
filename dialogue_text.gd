@@ -1,29 +1,15 @@
-#@tool
-#@icon ("res://npc_and_dialog/icons/text_bubble.svg")
-#class_name DialogText
-#extends DialogItem
-#
-#@export_multiline var text : String = "Placeholder text"
-#
-## Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-	#pass # Replace with function body.
-#
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+
 @tool
 @icon ("res://npc_and_dialog/icons/text_bubble.svg")
 class_name DialogText
 extends DialogItem
 
 # Added a setter function (set_text) that runs every time you type in the inspector
-@export_multiline var text : String = "Placeholder text" : set = set_text
+@export_multiline var text : String = "Placeholder text" : set = _set_text
 
 
 
-func set_text(value: String) -> void:
+func _set_text(value: String) -> void:
 	text = value
 	# Update the preview in real-time when editing
 	if Engine.is_editor_hint():

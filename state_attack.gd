@@ -11,6 +11,7 @@ var attacking: bool = false
 @onready var attack_anim: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 @onready var hurt_box: HurtBox = %AttackHurtBox
+@onready var charge_attack: Node = $"../ChargeAttack"
 
 func Enter() -> void:
 	player.UpdateAnimation("attack")
@@ -51,5 +52,7 @@ func HandleInput (_event: InputEvent) -> State:
 	return null
 	
 func EndAttack(_newAnimName: String) -> void:
+	if Input.is_action_pressed("attack"):
+		StateMachine.ChangeState(charge_attack)
 	attacking = false
 	

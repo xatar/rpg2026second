@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dn36xgul8fsbf"
+path="res://.godot/imported/exhausted.wav-09cf161e5ab9ed488de6357256b54edf.sample"
+
+[deps]
+
+source_file="res://2d game assets/exhausted.wav"
+dest_files=["res://.godot/imported/exhausted.wav-09cf161e5ab9ed488de6357256b54edf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
