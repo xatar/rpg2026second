@@ -78,7 +78,6 @@ _data = {
 [node name="DialogSystem" type="CanvasLayer" unique_id=289145181]
 process_mode = 3
 layer = 3
-follow_viewport_enabled = true
 script = ExtResource("1_3ealq")
 
 [node name="DialogUI" type="Control" parent="." unique_id=2006675351]

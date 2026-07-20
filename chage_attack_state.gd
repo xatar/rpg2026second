@@ -14,6 +14,7 @@ var particles : ParticleProcessMaterial
 @onready var idle: State_Idle = $"../idle"
 @onready var charge_hurt_box: HurtBox = %ChargeHurtBox
 @onready var charge_spin_hurt_box: HurtBox = %ChargeSpinHurtBox
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 
 func _ready() :
 	print("charge attack")
@@ -24,7 +25,7 @@ func Enter() -> void:
 	is_attacking = false
 	walking = false
 	charge_hurt_box.monitoring = true
-		
+	
 	pass
 func init() ->void:
 	
@@ -40,6 +41,7 @@ func Process (_delta: float) -> State:
 		timer -= _delta
 		if timer <= 0:
 			timer = 0
+			charge_complete()
 			
 		
 	#detect, walking or no
@@ -70,7 +72,8 @@ func HandleInput (_event: InputEvent) -> State:
 func charge_attack()->void:
 	is_attacking = true
 	player.animation_player.play("charge_attack")
-	player.animation_player.seek(get_spin_frame())
+	player.animation_player.seek(get_spin_frame(),true)
+	play_audio(sfx_spin)
 	var _duration : float = player.animation_player.current_animation_length
 	player.make_invulnerable(_duration)
 	charge_spin_hurt_box.monitoring = true
@@ -79,7 +82,7 @@ func charge_attack()->void:
 	#play animation
 	StateMachine.ChangeState(idle)
 	pass
-	
+	#
 func get_spin_frame()->float:
 	var interval :float = 0.05
 	match player.cardinal_direction:
@@ -89,3 +92,11 @@ func get_spin_frame()->float:
 			return interval * 4
 		_:
 			return interval * 6	
+			
+func play_audio(_audio:AudioStream) ->void:
+	audio_stream_player_2d.stream = _audio
+	audio_stream_player_2d.play()
+	pass
+func charge_complete()->void:
+	play_audio(sfx_chrage)
+	pass
