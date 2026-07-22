@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b87iosotmgg3o" path="res://state_idle.gd" id="4_e80uo"]
 [ext_resource type="Texture2D" uid="uid://cqrgwetj4q8kx" path="res://2d game assets/Shadow.png" id="4_wi0c6"]
 [ext_resource type="Script" uid="uid://btet0uy8jv5dk" path="res://state_walk.gd" id="5_cxr5p"]
+[ext_resource type="Texture2D" uid="uid://blacw7hp534nx" path="res://2d game assets/spin_effect.png" id="6_sg6sq"]
 [ext_resource type="Script" uid="uid://c4p0pp01drlco" path="res://state_attack.gd" id="6_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://irapm1giywoi" path="res://2d game assets/SwordSwoosh.wav" id="8_5ncpa"]
 [ext_resource type="Script" uid="uid://dm7m1nwni2nbc" path="res://PlayerInteractionsHost.gd" id="10_3tkgg"]
@@ -14,8 +15,10 @@
 [ext_resource type="Script" uid="uid://cg0loi6yqcg3n" path="res://PlayerCameraScript.gd" id="11_l6ohk"]
 [ext_resource type="Script" uid="uid://dinnbhwr1ie2f" path="res://state_stun.gd" id="11_r3kul"]
 [ext_resource type="Script" uid="uid://dlue3xaw40kld" path="res://chage_attack_state.gd" id="12_itxgx"]
+[ext_resource type="AudioStream" uid="uid://cgttanfco58hm" path="res://2d game assets/charged.wav" id="13_0pi4m"]
 [ext_resource type="PackedScene" uid="uid://c5b0bvwiynhdw" path="res://hit_box.tscn" id="13_oudfo"]
 [ext_resource type="Script" uid="uid://5g0uvjq7qs8t" path="res://push_area.gd" id="14_jatw7"]
+[ext_resource type="AudioStream" uid="uid://cduysb4opjagg" path="res://2d game assets/spin-attack.wav" id="14_sg6sq"]
 [ext_resource type="AudioStream" uid="uid://b5ltaw4dcdioo" path="res://2d game assets/hit_player.wav" id="15_jatw7"]
 [ext_resource type="Script" uid="uid://cv0cyulcg22j0" path="res://abilities.gd" id="17_rv870"]
 [ext_resource type="PackedScene" uid="uid://1v0otg5kydq0" path="res://item_magnet.tscn" id="18_efikj"]
@@ -240,8 +243,87 @@ radius = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_itxgx"]
 
+[sub_resource type="Gradient" id="Gradient_sg6sq"]
+colors = PackedColorArray(1, 1, 1, 1, 0.29543713, 0.7320542, 0.76675236, 0.74700004)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y0f4d"]
+gradient = SubResource("Gradient_sg6sq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1y5w0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 12, 1)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -20.000002
+linear_accel_max = -10.000002
+color_ramp = SubResource("GradientTexture1D_y0f4d")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgsek"]
 radius = 38.0
+
+[sub_resource type="Animation" id="Animation_1jgrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7wy67"]
+resource_name = "spin"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.108333334, 0.15, 0.2, 0.25, 0.29166666, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(5.7756904e-07, 0.86483455, 0.8721781, 1), Color(0, 0.86504203, 0.8719275, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q26ax"]
+_data = {
+&"RESET": SubResource("Animation_1jgrc"),
+&"spin": SubResource("Animation_7wy67")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rupst"]
 
@@ -282,6 +364,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
 }
 
 [sub_resource type="Animation" id="Animation_wi0c6"]
@@ -426,6 +520,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
+}
 
 [sub_resource type="Animation" id="Animation_47wu6"]
 resource_name = "charge_side"
@@ -454,6 +560,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [-1.5707964]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
 }
 
 [sub_resource type="Animation" id="Animation_2n1s8"]
@@ -484,6 +602,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [3.1415927]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 13)]
+}
 
 [sub_resource type="Animation" id="Animation_3vjad"]
 resource_name = "charge_walk_down"
@@ -512,6 +642,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
 }
 
 [sub_resource type="Animation" id="Animation_yt0h1"]
@@ -542,6 +684,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [-1.5707963267948966]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 13)]
+}
 
 [sub_resource type="Animation" id="Animation_vd78s"]
 resource_name = "charge_walk_up"
@@ -570,6 +724,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [3.141592653589793]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/ChargeHurtBox/GPUParticles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 13)]
 }
 
 [sub_resource type="Animation" id="Animation_kpjcp"]
@@ -871,6 +1037,12 @@ position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_itxgx")
 debug_color = Color(1, 1, 1, 0.41000003)
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D/ChargeHurtBox" unique_id=1731823876]
+position = Vector2(-8, 13)
+amount = 4
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_1y5w0")
+
 [node name="ChargeSpinHurtBox" parent="Sprite2D" unique_id=1834804031 instance=ExtResource("10_hp6x6")]
 unique_name_in_owner = true
 position = Vector2(1, 0)
@@ -881,6 +1053,14 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/ChargeSpinHurtBox" unique_id=34614114]
 shape = SubResource("CircleShape2D_cgsek")
 debug_color = Color(1, 1, 1, 0.41000003)
+
+[node name="SpinEffectSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1855836285]
+show_behind_parent = true
+texture = ExtResource("6_sg6sq")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D/SpinEffectSprite2D" unique_id=870794353]
+libraries/ = SubResource("AnimationLibrary_q26ax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=370391028]
 shape = SubResource("CircleShape2D_rupst")
@@ -907,6 +1087,8 @@ script = ExtResource("11_r3kul")
 
 [node name="ChargeAttack" type="Node" parent="StateMachine" unique_id=1274868268]
 script = ExtResource("12_itxgx")
+sfx_charge = ExtResource("13_0pi4m")
+sfx_spin = ExtResource("14_sg6sq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=369579952]
 limit_left = -300

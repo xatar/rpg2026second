@@ -2,7 +2,7 @@ class_name State_Charge_Attack extends State
 
 @export var charge_duration:float = 1.0
 @export var move_speed:float = 80.0
-@export var sfx_chrage : AudioStream
+@export var sfx_charge : AudioStream
 @export var sfx_spin : AudioStream
 
 
@@ -15,6 +15,9 @@ var particles : ParticleProcessMaterial
 @onready var charge_hurt_box: HurtBox = %ChargeHurtBox
 @onready var charge_spin_hurt_box: HurtBox = %ChargeSpinHurtBox
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+@onready var spin_effect_sprite_2d: Sprite2D = $"../../Sprite2D/SpinEffectSprite2D"
+@onready var spin_animation_player: AnimationPlayer = $"../../Sprite2D/SpinEffectSprite2D/AnimationPlayer"
+@onready var gpu_particles_2d: GPUParticles2D = $"../../Sprite2D/ChargeHurtBox/GPUParticles2D"
 
 func _ready() :
 	print("charge attack")
@@ -25,14 +28,22 @@ func Enter() -> void:
 	is_attacking = false
 	walking = false
 	charge_hurt_box.monitoring = true
-	
+	gpu_particles_2d.emitting = true
+	gpu_particles_2d.amount = 4
+	gpu_particles_2d.explosiveness = 0
+	particles.initial_velocity_min = 10
+	particles.initial_velocity_max = 30
 	pass
 func init() ->void:
-	
+	gpu_particles_2d.emitting = false
+	particles = gpu_particles_2d.process_material as ParticleProcessMaterial
+	spin_effect_sprite_2d.visible = false
 	pass 
 func Exit() -> void:
 	charge_hurt_box.monitoring = false
 	charge_spin_hurt_box.monitoring = false
+	spin_effect_sprite_2d.visible = false
+	gpu_particles_2d.emitting = false
 	pass
 	
 func Process (_delta: float) -> State:
@@ -73,6 +84,9 @@ func charge_attack()->void:
 	is_attacking = true
 	player.animation_player.play("charge_attack")
 	player.animation_player.seek(get_spin_frame(),true)
+	spin_effect_sprite_2d.visible = true
+
+	spin_animation_player.play("spin")
 	play_audio(sfx_spin)
 	var _duration : float = player.animation_player.current_animation_length
 	player.make_invulnerable(_duration)
@@ -98,5 +112,18 @@ func play_audio(_audio:AudioStream) ->void:
 	audio_stream_player_2d.play()
 	pass
 func charge_complete()->void:
-	play_audio(sfx_chrage)
+	play_audio(sfx_charge)
+	#increase particles
+	gpu_particles_2d.amount = 50
+	gpu_particles_2d.explosiveness = 1
+	particles.initial_velocity_min = 50
+	particles.initial_velocity_max = 100
+	
+	#wait
+	await get_tree().create_timer(0.5).timeout
+	#decrease particles
+	gpu_particles_2d.amount = 10
+	gpu_particles_2d.explosiveness = 0
+	particles.initial_velocity_min = 10
+	particles.initial_velocity_max = 30
 	pass
