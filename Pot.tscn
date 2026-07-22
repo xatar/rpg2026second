@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://do3x85cau2dq5"]
+
+[ext_resource type="Texture2D" uid="uid://m8k32sixwklw" path="res://2d game assets/Props.png" id="1_a4utd"]
+[ext_resource type="AudioStream" uid="uid://chb0qv7hlm7j7" path="res://2d game assets/pot_destroy.wav" id="2_bjytf"]
+[ext_resource type="PackedScene" uid="uid://81s6qc7dppmf" path="res://throwable.tscn" id="3_3338n"]
+
+[sub_resource type="Gradient" id="Gradient_bjytf"]
+offsets = PackedFloat32Array(0.19209039, 0.87288135)
+colors = PackedColorArray(0, 0, 0, 1, 0.012617188, 0.012617188, 0.012617188, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bt2o4"]
+gradient = SubResource("Gradient_bjytf")
+width = 20
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_3338n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_Shadow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kdyub"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_wgf6e"]
+resource_name = "destroy"
+length = 0.5
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.22500001, 0.3, 0.375, 0.45000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 47]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_Shadow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.3846154),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_bjytf")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80hxo"]
+_data = {
+&"RESET": SubResource("Animation_3338n"),
+&"default": SubResource("Animation_kdyub"),
+&"destroy": SubResource("Animation_wgf6e")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y5w0"]
+size = Vector2(16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0f4d"]
+size = Vector2(20, 10)
+
+[node name="Pot" type="Node2D" unique_id=1564718435]
+
+[node name="Sprite2D_Shadow" type="Sprite2D" parent="." unique_id=1039236207]
+texture = SubResource("GradientTexture2D_bt2o4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1792208169]
+position = Vector2(0, -10)
+texture = ExtResource("1_a4utd")
+hframes = 16
+vframes = 3
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1779438397]
+libraries/ = SubResource("AnimationLibrary_80hxo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1647155605]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1287312707]
+shape = SubResource("RectangleShape2D_1y5w0")
+debug_color = Color(0, 0.60038817, 0.70000815, 0.14500001)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1169386398]
+
+[node name="Throwable" parent="." unique_id=1092840400 instance=ExtResource("3_3338n")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Throwable" unique_id=423852021]
+shape = SubResource("RectangleShape2D_y0f4d")
+debug_color = Color(0.69008625, 0.4945157, 0.17558163, 0)

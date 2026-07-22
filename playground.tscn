@@ -24,6 +24,7 @@
 [ext_resource type="Resource" uid="uid://dlaf3ulqiug3t" path="res://npc_02.tres" id="20_ymgag"]
 [ext_resource type="Script" uid="uid://xvpbc3biqhcm" path="res://dialog_choice.gd" id="23_u2qr3"]
 [ext_resource type="Script" uid="uid://b4ceak8aglsah" path="res://dialog_branch.gd" id="24_vnugj"]
+[ext_resource type="PackedScene" uid="uid://do3x85cau2dq5" path="res://Pot.tscn" id="25_2yo0f"]
 
 [node name="Playground" type="Node2D" unique_id=1621601241]
 y_sort_enabled = true
@@ -210,3 +211,9 @@ script = ExtResource("18_jufm4")
 text = "What a shame... Who will help me instead?"
 npc_info = ExtResource("20_ymgag")
 metadata/_custom_type_script = "uid://co27s0mfsyi2v"
+
+[node name="Pot" parent="." unique_id=1564718435 instance=ExtResource("25_2yo0f")]
+position = Vector2(395, 113)
+
+[node name="Pot2" parent="." unique_id=1905246697 instance=ExtResource("25_2yo0f")]
+position = Vector2(492, 70)

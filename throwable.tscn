@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://81s6qc7dppmf"]
+
+[ext_resource type="Script" uid="uid://bne3fu0rh0kc0" path="res://throwable.gd" id="1_y31su"]
+[ext_resource type="Script" uid="uid://cuweyd25pkvph" path="res://hurt_box.gd" id="2_jiiek"]
+
+[node name="Throwable" type="Area2D" unique_id=1092840400]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_y31su")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=786254935]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("2_jiiek")
+metadata/_custom_type_script = "uid://cuweyd25pkvph"
