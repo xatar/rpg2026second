@@ -21,7 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://cduysb4opjagg" path="res://2d game assets/spin-attack.wav" id="14_sg6sq"]
 [ext_resource type="AudioStream" uid="uid://b5ltaw4dcdioo" path="res://2d game assets/hit_player.wav" id="15_jatw7"]
 [ext_resource type="Script" uid="uid://cfa5g3jyqk01" path="res://state_lift.gd" id="16_h84ma"]
-[ext_resource type="AudioStream" uid="uid://difum6fphmd8u" path="res://2d game assets/huwh.wav" id="17_2n1s8"]
 [ext_resource type="Script" uid="uid://g6785ga45465" path="res://state_carry.gd" id="17_47wu6"]
 [ext_resource type="Script" uid="uid://cv0cyulcg22j0" path="res://abilities.gd" id="17_rv870"]
 [ext_resource type="PackedScene" uid="uid://1v0otg5kydq0" path="res://item_magnet.tscn" id="18_efikj"]
@@ -613,7 +612,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_48og4"]
-resource_name = "carry_walk_down"
+resource_name = "carry_walk"
 length = 0.3
 loop_mode = 2
 step = 0.05
@@ -657,7 +656,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_xmpta"]
 resource_name = "carry_walk_side"
 length = 0.3
-loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1296,7 +1294,7 @@ _data = {
 &"carry_down": SubResource("Animation_q26ax"),
 &"carry_side": SubResource("Animation_p01ps"),
 &"carry_up": SubResource("Animation_m7dl7"),
-&"carry_walk_down": SubResource("Animation_48og4"),
+&"carry_walk": SubResource("Animation_48og4"),
 &"carry_walk_side": SubResource("Animation_xmpta"),
 &"carry_walk_up": SubResource("Animation_mrbh7"),
 &"charge_attack": SubResource("Animation_ictha"),
@@ -1504,7 +1502,6 @@ sfx_spin = ExtResource("14_sg6sq")
 
 [node name="Lift" type="Node" parent="StateMachine" unique_id=1036546551]
 script = ExtResource("16_h84ma")
-lift_audio = ExtResource("17_2n1s8")
 
 [node name="Carry" type="Node" parent="StateMachine" unique_id=914075488]
 script = ExtResource("17_47wu6")
